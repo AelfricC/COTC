@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:padding="30dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="大陆的霸者 - 合并版脚本"/>
+
+        <RadioGroup
+                android:id="@+id/yangmao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+            <RadioButton
+                    android:id="@+id/1"
+                    android:text="羊毛"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </RadioGroup>
+
+
+        <RadioGroup
+                android:id="@+id/huatian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+            <RadioButton
+                    android:id="@+id/1"
+                    android:text="花田"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </RadioGroup>
+
+
+        <RadioGroup
+                android:id="@+id/level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+            <RadioButton
+                    android:id="@+id/2"
+                    android:text="中级"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <RadioButton
+                    android:id="@+id/3"
+                    android:text="高级"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </RadioGroup>
+
+
+        <RadioGroup
+                android:id="@+id/shuaye"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+            <RadioButton
+                    android:id="@+id/1"
+                    android:text="刷野"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </RadioGroup>
+        
+
+        <EditText
+        android:id="@+id/map_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hell-castle-edoras" 
+        android:minHeight="48dp" />
+
+        <EditText
+        android:id="@+id/round_per_recover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="11" 
+        android:minHeight="48dp" />
+    </LinearLayout>
+</FrameLayout>
