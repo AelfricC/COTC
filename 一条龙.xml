@@ -46,6 +46,7 @@
 
         <RadioGroup
                 android:id="@+id/level"
+                android:text="花田等级"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
@@ -76,7 +77,12 @@
                     android:layout_height="wrap_content" />
         </RadioGroup>
         
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地图名字"
+            android:layout_gravity="center"
+            android:padding="8dp"/>
         <EditText
         android:id="@+id/map_name"
         android:layout_width="match_parent"
@@ -84,6 +90,13 @@
         android:text="hell-castle-edoras" 
         android:minHeight="48dp" />
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="恢复回合数"
+            android:layout_gravity="center"
+            android:padding="8dp"/>
         <EditText
         android:id="@+id/round_per_recover"
         android:layout_width="match_parent"
