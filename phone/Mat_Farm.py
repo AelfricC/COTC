@@ -21,16 +21,16 @@ characters_array_Cait = [0, 0, 0, 0]
 skills_array_Cait = [0, 0, 0, 0]
 
 def run_script_battle():
-    Locate_Wild()
+    #Locate_Wild()
     while True:
-        total_encounter_count = 0
         common_encounter_count = 0
         cait_encounter_count = 0
         while True:
+            print("swping")
             c.swipe_until_black_screen([206, 434], [1200, 700])
-            time.sleep(6)
             if find_lv70_cat():
-                time.sleep(4)
+                print("found cait!")
+                wait_Battle()
                 Boost_Atk()
                 wait_Battle()
                 print("passed")
@@ -38,15 +38,18 @@ def run_script_battle():
                 delay_tap(1994, 1562)  # boost
                 delay_tap(2361, 1551)  # atk
                 cait_encounter_count += 1
-            elif xp.matchColor("#250209", 187, 1496,1):  # bottom left red
+                common_encounter_count += 1
+                Tap_Until_Exsit(Menu, Middle_Screen)
+                print("finish battle")
+            elif wait_Battle(): #xp.matchColor("#250209", 187, 1496,1):  # bottom left red
                 print("start battle")
                 # c.flee_battle()
                 select_char_and_skill(characters_array, skills_array)
                 Boost_Atk()
-            common_encounter_count += 1
-            tap_until_finishBattle()
-            print("finish battle")
-            total_encounter_count += 1
+                common_encounter_count += 1
+                print("start clicking until finsh battle")
+                Tap_Until_Exsit(Menu, Middle_Screen)
+                print("finish battle")
             if common_encounter_count >= round_per_recover:
                 break
         # return to hotel
