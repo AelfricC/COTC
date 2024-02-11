@@ -1,89 +1,50 @@
-
 import time
 import subprocess
 from xiaopy import *
-from cotc import COTC
+from Phone_COTC import *
 
+read = ["#EEEFF0", 2586, 697]
+confirm_read = ["#F9FAFA", 1848, 1464]
+nut_rewards = ["#2C5F74", 1370, 1363]
 
-def delay_tap(x,y):
-    time.sleep(1)
-    xp.tap(x,y)
-def select_char(va):
-    if va == 1:
-        delay_tap(2570, 259)
-    elif va == 2:
-        delay_tap(2638, 521)
-    elif va == 3:
-        delay_tap(2653, 920)
-    elif va == 4:
-        delay_tap(2736, 1241)
-
-def select_skill(va):
-    if va == 2:
-        delay_tap(1696, 778)
-    elif va == 3:
-        delay_tap(1803, 1020)
-    elif va == 4:
-        delay_tap(1748, 1273)
-    elif va == 5:
-        delay_tap(1747, 1496)
-    elif va == 1:
-        delay_tap(1775, 551)
-def press_until_Start:
+# ui = xp.ui()
+# book_name = ui.stringValue("book_name")
+# if book_name == "Nut":
+#     nut()
+# else:
+#     else()
+def nut():
+    launch_game()
+    characters_array = [1, 2, 3, 0]
+    battle_count = 0
     while True:
-        if not xp.matchColor("#250209", 187, 1496, 1):  # bottom left red
-            xp.tap(x, y,5)#anywhere middle
-            time.sleep(1)
-        else:
-            break
-def wait_Battle():
-    time.sleep(1)
-    while True:
-        if not xp.matchColor("#250209", 187, 1496, 1):  # bottom left red
-            time.sleep(1)
-        else:
-            time.sleep(1)
-            break
-def wait_Idle():
-    while True:
-        if not xp.matchColor("#EEEEED", 1671, 1441, 1): #check menu
-            time.sleep(1)
-        else:
-            time.sleep(1)
-            break
+        start_time = time.time()
+        #tap_After_checking(read,20)
+        double_tap(2561, 1613)
+        xp.toast(str(battle_count))
+        tap_After_checking(confirm_read,20)
+        press_until_SeeColor(Battle_Screen)
+        skills_array = [[0], [3], [3], [0]]
+        select_char_and_skill(characters_array, skills_array)
+        boost_Atk()
+        time.sleep(10)
+        # 22222222222222222222222222222
+        press_until_SeeColor(Battle_Screen)
+        skills_array = [[2], [3], [3], [0]]
+        select_char_and_skill(characters_array, skills_array)
+        boost_Atk()
+        time.sleep(15)
+        # End
+        press_until_SeeColor(nut_rewards)
+        battle_count += 1
+        xp.toast(str(battle_count))
+        tap_Until_Disappear(nut_rewards)
+        double_fast_tap(1506, 1387)
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(f"Your program took {elapsed_time} seconds to run.")
 
-def select_char_and_skill(characters, skills):
-    for char, skill in zip(characters, skills):
-        select_char(char)
-        select_skill(skill)
 
-characters_array = [1, 2, 3, 4]
-skills_array = [3, 0, 0, 4]
 
-characters_array2 = [1, 2, 3, 4]
-skills_array2 = [3, 0, 0, 4]
-
-characters_array3 = [1, 2, 3, 4]
-skills_array3 = [3, 0, 0, 4]
-
-characters_array4 = [1, 2, 3, 4]
-skills_array4 = [3, 0, 0, 4]
-
-def main():
-    delay_tap()#start
-    delay_tap()#confirm
-    press_until_Start()
-    select_char_and_skill(characters_array, skills_array)
-    delay_tap(2361, 1551)  # atk
-    wait_Battle()
-    select_char_and_skill(characters_array2, skills_array2)
-    delay_tap(1994, 1562)  # boost
-    delay_tap(2361, 1551)  # atk
-    #######phaese 2
-    press_until_Start()
-    select_char_and_skill(characters_array3, skills_array3)
-    delay_tap(2361, 1551)  # atk
-    wait_Battle()
-    select_char_and_skill(characters_array4, skills_array4)
-    delay_tap(1994, 1562)  # boost
-    delay_tap(2361, 1551)  # atk
+nut()
+#print(xp.getColor(1518, 1362))
