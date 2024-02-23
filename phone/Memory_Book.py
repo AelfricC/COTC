@@ -13,8 +13,10 @@ confirm_read = ["#F9FAFA", 1848, 1464]
 # if Book == "NUT":
 #     nut()
 
-def battle_wait(characters_array, skills_array):
+def battle_wait(characters_array, skills_array, beast = 0):
     select_char_and_skill(characters_array, skills_array)
+    if beast != 0:
+        divine_beast()
     only_atk()
     wait_Battle()
     if check_death(1):
@@ -31,8 +33,9 @@ def book():
     skills_array4 = [[3], [2], [-2], [-100]]
     skills_array5 = [[2,3], [100], [100], [3]]
     skills_array6 = [[2,3], [4,3], [2,3], [-3,4]]
-    # skills_array7 = [[4, 3], [2, 3], [1], [3, 3]]
-    # skills_array8 = [[2, 2], [1], [0], [100]]
+    skills_array7 = [[4, 3], [2, 3], [1], [3, 3]]
+    skills_array8 = [[2, 2], [1], [0], [100]]
+    skills_array9 = [[2, 2], [1], [0], [100]]
     while True:
         #tap_After_checking(read,20)
         double_tap(2572, 532)
@@ -54,15 +57,17 @@ def book():
         if battle_wait(characters_array, skills_array5):
             continue
         # 66666666666666666666666
-        select_char_and_skill(characters_array, skills_array6)
+        if battle_wait(characters_array, skills_array6):
+            continue
+        # # 7777777777
+        if battle_wait(characters_array, skills_array7, 1):
+            continue
+        # 888888888888888
+        if battle_wait(characters_array, skills_array8):
+            continue
+        # # 99999
+        select_char_and_skill(characters_array, skills_array9)
         only_atk()
-        time.sleep(15)
-        # # 77777
-        # if battle_wait(characters_array, skills_array7):
-        #     continue
-        # # 88888
-        # select_char_and_skill(characters_array, skills_array8)
-        # only_atk()
         # End
         press_until_SeeColor(rewards)
         battle_count += 1
