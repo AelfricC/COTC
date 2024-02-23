@@ -93,11 +93,6 @@ def only_atk():
 # skills_array = [Skill location, BP, point_to skill(1-4) ,pet , pet BP]
 # swap row: -
 # Ultimate:100
-# Ultimate:100
-# Ultimate:100
-# Ultimate:100
-# Ultimate:100
-# Ultimate:100
 def select_skill(char,value):
     skill_slot_x = 2000
     skill_slot_y = 544
