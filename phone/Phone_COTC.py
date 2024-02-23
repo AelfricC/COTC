@@ -89,42 +89,64 @@ def select_char(va,skill):
 
 def only_atk():
     tap_After_checking(atk,50)
+# skills_array = [-1,3,4,1,1]
+# skills_array = [Skill location, BP, point_to skill(1-4) ,pet , pet BP]
+# swap row: -
+# Ultimate:100
+# Ultimate:100
+# Ultimate:100
+# Ultimate:100
+# Ultimate:100
+# Ultimate:100
 def select_skill(char,value):
-    va = value[0]
-    bp = value[1] if len(value) > 1 else 0
-    pet = value[2] if len(value) > 2 else 0
-    pet_bp = value[3] if len(value) > 3 else 0
     skill_slot_x = 2000
     skill_slot_y = 544
     pet_skill_slot_x = 1447
     pet_skill_slot_y = 789
+
+    va = value[0]
+    bp = value[1] if len(value) > 1 else 0
+    point_to = value[2] if len(value) > 2 else 0
+    pet = value[3] if len(value) > 3 else 0
+    pet_bp = value[4] if len(value) > 4 else 0
+
+    #swap rows
     if va < 0:
         delay_tap(2563, 1557)
         time.sleep(0.5)
+    #select pet skill first
     if pet > 0:
         delay_tap(1621, 270)
         if pet_bp == 0 and pet > 0:
             tap_After_checking(pet_use,10)
         elif pet_bp >= 1:
+            #check if 3 bp works?
             xp.swipe(pet_skill_slot_x, pet_skill_slot_y, pet_skill_slot_x + 235 + (pet_bp * 190),
                      pet_skill_slot_y, 0.5)
             tap_After_checking(pet_use, 10)
-        time.sleep(2)
+        time.sleep(3)
         select_char(char, value)
         if va < 0:
             delay_tap(2563, 1557)
             va = abs(va)
             time.sleep(0.5)
-    if bp == 0 and va > 0:
+    #normal skill selection
+    if bp == 0 and va > 0 and va < 10:
         delay_tap(skill_slot_x,skill_slot_y + ((va - 1)  * 247))
-    elif bp >= 1 :
+    elif bp >= 1 and va > 0 and va < 10:
         xp.swipe(skill_slot_x,skill_slot_y + ((va - 1) * 247),skill_slot_x + 231 + (bp * 190),skill_slot_y + ((va - 1) * 247),0.5)
         time.sleep(0.7)
+    #ultimate
     if va == 100:
         tap_After_checking(ultimate,20)
         delay_tap(1593, 265)
         time.sleep(0.5)
         delay_tap(2168, 1140)
+    #pointing to teammate's skill
+    if point_to > 0:
+        char_banner_x = 0
+        char_banner_y = 0
+        delay_tap(char_banner_x,char_banner_y + (point_to * '?'))
 # characters_array = [1, 2, 3, 4]
 # skills_array = [[-1,3,1], [2,2], [2,1], [1,0]]
 # select_char_and_skill(characters_array, skills_array)
