@@ -12,7 +12,7 @@ while True:
     double_fast_tap(1381, 982) #ok
     time.sleep(3)
     checking_Color(found_soul)
-    tap_once_After_checking(found_soul, -1)  # click new soul
+    check_here_tap_there(found_soul,set_new_soul)  # click new soul
     double_fast_tap(1181, 959) #ok
-    double_fast_tap(1181, 959)  # ok
+    double_fast_tap(1181, 959)
     tap_Until_Exsit(set_soul,set_new_soul)
