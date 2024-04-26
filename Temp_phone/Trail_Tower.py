@@ -32,26 +32,26 @@ def Master():
 def Elite_sword():
     print("start")
     characters_array = [1, 2, 3, 4]
-    skills_array1 = [[2,3], [4], [3,3], [-4,3]]
-    skills_array2 = [[4], [4,1], [-4], [-3]]
-    skills_array3 = [[3], [4,2], [0], [2,3]]
-    skills_array4 = [[1], [13,3], [3,3], [4]]
-    skills_array5 = [[2,3], [12], [4], [-4,3]]
-    skills_array6 = [[1], [4], [0], [-3]]
-    skills_array7 = [[0], [13,1], [0], [2,3]]
-    skills_array8 = [[0], [3,3], [3, 3], [0]]
-    skills_array9 = [[2,3], [12], [4], [1,3]]
-    skills_array10 = [[0], [-1], [2], [-4,3]]
-    skills_array11 = [[0], [0], [1], [3]]
-    skills_array12 = [[3], [4], [2], [-3]]
-    skills_array13 = [[2,3], [13,3], [3,3], [2,3]]
-    skills_array14 = [[4], [12], [4], [-4,3]]
-    skills_array15 = [[1], [0], [0], [0]]
-    skills_array16 = [[100], [100], [100], [-3]]
-    skills_array17 = [[2,3], [13,3], [4,2], [2,3]]
-    skills_array18 = [[1], [3,2], [4,3], [2,2]]
-    skills_array19 = [[4], [14], [0], [100]]
-    skills_array20 = [[1], [13,3], [4,3], [2,3]]
+    skills_array1 = [[], [], [], []]
+    skills_array2 = [[], [], [], []]
+    skills_array3 = [[], [], [], []]
+    skills_array4 = [[], [], [], []]
+    skills_array5 = [[], [], [], []]
+    skills_array6 = [[], [], [], []]
+    skills_array7 = [[], [], [], []]
+    skills_array8 = [[], [], [], []]
+    skills_array9 = [[], [], [], []]
+    skills_array10 = [[], [], [], []]
+    skills_array11 = [[], [], [], []]
+    skills_array12 = [[], [], [], []]
+    skills_array13 = [[], [], [], []]
+    skills_array14 = [[], [], [], []]
+    skills_array15 = [[], [], [], []]
+    skills_array16 = [[], [], [], []]
+    skills_array17 = [[], [], [], []]
+    skills_array18 = [[], [], [], []]
+    skills_array19 = [[], [], [], []]
+    skills_array20 = [[], [], [], []]
 tap_After_checking(battle_icon_InTower,-1)
 tap_After_checking(battle_icon_InTower_confirm,-1)
 wait_Battle()
@@ -92,3 +92,4 @@ elif tower_name == "Elite_sword":
     Elite_sword()
 elif tower_name == "Elite_fire":
     Elite_fire()
+[[], [], [], []]

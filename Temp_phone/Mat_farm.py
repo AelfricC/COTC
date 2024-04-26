@@ -8,7 +8,6 @@ characters_array = [1, 2, 0, 0]
 skills_array = [[2,3], [0], [0], [0]] #cyrus
 skills_array1 = [[4], [4,0,1], [0], [0]] #recover
 skills_array2 = [[4], [3,0], [0], [0]] #abosorb
-characters_array_Cait = [0, 0, 0, 0]
 skills_array_Cait = [0, 0, 0, 0]
 
 #farm const
