@@ -98,10 +98,9 @@ def run_script_battle(characters_array, skills_array,round_per_recover):
                 # print("finish battle")
             else:
                 print("start battle")
-                select_char_and_skill(characters_array, skills_array)
+                select_char_and_skill(characters_array, skills_array,1,1)
             #     delay_tap(1943, 118)
             #     delay_tap(1416, 781)
-                only_atk()
                 common_encounter_count += 1
                 battle_count += 1
                 print("start clicking until finsh battle")
