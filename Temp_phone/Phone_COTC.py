@@ -344,3 +344,11 @@ def check_here_tap_there(check_va,tap_val):
         else:
             print("Can't see it yet")
             time.sleep(0.5)
+
+def atk_N_wait(va = 1):
+    # 1 = only atk, 2 = boost atk
+    if va == 1:
+      only_atk()
+    elif va == 2:
+      boost_Atk
+    wait_Battle()
