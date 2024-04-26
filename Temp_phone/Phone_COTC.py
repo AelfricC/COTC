@@ -226,10 +226,21 @@ def boost_Atk():
 def swap():
     delay_tap(1430, 957)  # swap
 
-def select_char_and_skill(characters, skills):
+def select_char_and_skill(characters, skills, atk_mode = 1, end = 0, divine_beast = 0):
     for char, skill in zip(characters, skills):
         select_char(char,skill)
         select_skill(char,skill)
+    if divine_beast == 1:
+      divine_beast()
+    if atk_mode == 1:
+      only_atk()
+    elif atk_mode == 2:
+      boost_Atk()
+    if end != 1:
+      time.sleep(5)
+      wait_Battle()
+    else:
+      time.sleep(5)
 
 def select_char(va,skill):
     if skill[0] != 0:
@@ -344,11 +355,3 @@ def check_here_tap_there(check_va,tap_val):
         else:
             print("Can't see it yet")
             time.sleep(0.5)
-
-def atk_N_wait(va = 1):
-    # 1 = only atk, 2 = boost atk
-    if va == 1:
-      only_atk()
-    elif va == 2:
-      boost_Atk
-    wait_Battle()
