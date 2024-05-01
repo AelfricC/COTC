@@ -5,16 +5,17 @@ from xiaopy import *
 from Phone_COTC import *
 
 characters_array = [1, 2, 0, 0]
-skills_array = [[2,3], [0], [0], [0]] #cyrus
+skills_array = [[4,3], [0], [0], [0]] #cyrus
 skills_array1 = [[4], [4,0,1], [0], [0]] #recover
 skills_array2 = [[4], [3,0], [0], [0]] #abosorb
 skills_array_Cait = [0, 0, 0, 0]
 
 #farm const
-Tap_Host = ["#F6F6F6", 275, 862]
-Wild_Loc = [1188, 205]
-Town_Loc = [433, 948]
-Monster_Loc = [893, 422]
+Tap_Host = ["#EEE6DD", 1334, 417]
+Enter_Holtel = ["#FFFFFF", 1149, 359]
+Wild_Loc = [1122, 410]
+Town_Loc = [1156, 673]
+Monster_Loc = [894, 394]
 Arrive_In_Sec = 4.5
 round_per_recover = 18
 
@@ -38,31 +39,35 @@ def Locate_Wild():
     tap_Until_Exsit(Menu, Rest_OK)
     print("open world map")
     tap_After_checking(World_Map)
-    ##### for brilliant weapon #####
-    print("zoom map")
-    zoom_map()
-    time.sleep(0.5)
-    print("swipe")
-    xp.swipe(1726, 258, 1029, 637, 0.5)
-    time.sleep(0.5)
     delay_tap(Wild_Loc[0], Wild_Loc[1])  # tap wild
     double_fast_tap(Map_Proceed[1],Map_Proceed[2])  # proceed
     tap_After_checking(Map_Ok,15)  # ok
-    checking_Color(Menu)
-    print("open mini map")
-    delay_tap(Mini_Map[0], Mini_Map[1])  # open mini map
-    delay_tap(1068, 335)  # get into gate
-    wait_Idle()
-    delay_tap(Mini_Map[0], Mini_Map[1])  # open mini map
-    delay_tap(643, 423)
-    wait_Idle()
-    double_fast_tap(1134, 502)
-    double_fast_tap(1370, 645)
     wait_Idle()
     ##### for brilliant weapon #####
+    # print("zoom map")
+    # zoom_map()
+    # time.sleep(0.5)
+    # print("swipe")
+    # xp.swipe(1726, 258, 1029, 637, 0.5)
+    # time.sleep(0.5)
+    # delay_tap(Wild_Loc[0], Wild_Loc[1])  # tap wild
+    # double_fast_tap(Map_Proceed[1],Map_Proceed[2])  # proceed
+    # tap_After_checking(Map_Ok,15)  # ok
+    # checking_Color(Menu)
+    # print("open mini map")
     # delay_tap(Mini_Map[0], Mini_Map[1])  # open mini map
-    # delay_tap(Monster_Loc[0], Monster_Loc[1])  # farm location
-    # time.sleep(Arrive_In_Sec)
+    # delay_tap(1068, 335)  # get into gate
+    # wait_Idle()
+    # delay_tap(Mini_Map[0], Mini_Map[1])  # open mini map
+    # delay_tap(643, 423)
+    # wait_Idle()
+    # double_fast_tap(1134, 502)
+    # double_fast_tap(1370, 645)
+    # wait_Idle()
+    ##### for brilliant weapon #####
+    delay_tap(Mini_Map[0], Mini_Map[1])  # open mini map
+    delay_tap(Monster_Loc[0], Monster_Loc[1])  # farm location
+    time.sleep(Arrive_In_Sec)
 
 def run_script_battle(characters_array, skills_array,round_per_recover):
     launch_game()
@@ -74,27 +79,25 @@ def run_script_battle(characters_array, skills_array,round_per_recover):
         common_encounter_count = 0
         while True:
             print("swping")
-            swipe_Until_Black(2)
+            swipe_Until_Black()
+            print("stop swiping")
             wait_Battle()
             if not xp.matchColor("#1A5175", 252, 107,0.8):#if cyrus is not the first:
                 print("found cait!")
-                escape()
-                # cait_encounter_count += 1
-                # if common_encounter_count > 0:
-                #     common_encounter_count -= 1
-                # swap()
-                # boost_Atk()
-                # time.sleep(10)
-                # wait_Battle()
-                # print("fight 2nd roung")
-                # swap()
-                # boost_Atk()
-                # time.sleep(5)
-                # wait_Battle()
-                # swap()
-                # boost_Atk()
-                # tap_Until_Exsit(Menu, ATK)
-                # print("finish battle")
+                # escape()
+                cait_encounter_count += 1
+                if common_encounter_count > 0:
+                    common_encounter_count -= 1
+                swap()
+                boost_Atk()
+                time.sleep(10)
+                wait_Battle()
+                print("fight 2nd roung")
+                swap()
+                boost_Atk()
+                time.sleep(5)
+                tap_Until_Exsit(Menu, ATK)
+                print("finish battle")
             else:
                 print("start battle")
                 select_char_and_skill(characters_array, skills_array,1,1)
@@ -109,16 +112,16 @@ def run_script_battle(characters_array, skills_array,round_per_recover):
             if common_encounter_count == round_per_recover:
                 break
             ####for continuing going to the farm location
-            # if common_encounter_count == 1: 
-            #     print("open mini map")
-            #     delay_tap(Mini_Map[0], Mini_Map[1])  # open mini map
-            #     delay_tap(Monster_Loc[0], Monster_Loc[1])  # farm location
-            #     time.sleep(2)
+            if common_encounter_count == 1:
+                print("open mini map")
+                delay_tap(Mini_Map[0], Mini_Map[1])  # open mini map
+                delay_tap(Monster_Loc[0], Monster_Loc[1])  # farm location
+                time.sleep(2)
         # return to hotel
-        tap_After_checking(World_Map)
+        tap_After_checking(World_Map,8)
         # delay_tap(224, 452)  # tap world type
         time.sleep(0.5)
-        zoom_map()
+        # zoom_map()
         delay_tap(Town_Loc[0],Town_Loc[1])  # tap town
         Locate_Wild()
 
