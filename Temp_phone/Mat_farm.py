@@ -125,6 +125,7 @@ def run_script_battle(characters_array, skills_array,round_per_recover):
         # zoom_map()
         print("tap town")
         delay_tap(Town_Loc[0],Town_Loc[1])  # tap town
+        time.sleep(0.4)
         Locate_Wild()
 
 run_script_battle(characters_array, skills_array,round_per_recover)
