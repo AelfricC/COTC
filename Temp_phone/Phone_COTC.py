@@ -227,12 +227,16 @@ def swap():
     delay_tap(1430, 957)  # swap
 
 
-def select_char_and_skill(characters, skills, end=0, divine_beast=0):
+def select_char_and_skill(characters, skills, atk_mode=1, end=0, divine_beast=0):
     for char, skill in zip(characters, skills):
         select_char(char, skill)
         select_skill(char, skill)
     if divine_beast == 1:
         divine_beast()
+    if atk_mode == 1:
+        only_atk()
+    elif atk_mode == 2:
+        boost_Atk()
     if end != 1:
         time.sleep(5)
         wait_Battle()
