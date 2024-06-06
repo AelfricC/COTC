@@ -101,7 +101,7 @@ def run_script_battle(characters_array, skills_array,round_per_recover):
                     break
                 elif xp.matchColor("#17486A", 291, 102,0.9):
                     print("start battle")
-                    select_char_and_skill(characters_array, skills_array,1)
+                    select_char_and_skill(characters_array, skills_array,1,1)
                     common_encounter_count += 1
                     battle_count += 1
                     print("start clicking until finsh battle")
