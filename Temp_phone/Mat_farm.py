@@ -23,6 +23,7 @@ def Locate_Wild():
     #time.sleep(6)
     double_fast_tap(Map_Proceed[1],Map_Proceed[2])  # proceed
     print("procced, gonna click ok to tele")
+    time.sleep(0.5)
     tap_After_checking(Map_Ok,15)  # ok
     wait_Idle()
     tap_After_checking(Enter_Holtel)  # enter hotel
@@ -80,34 +81,33 @@ def run_script_battle(characters_array, skills_array,round_per_recover):
         while True:
             print("swping")
             swipe_Until_Black()
-            print("stop swiping")
             wait_Battle()
-            if not xp.matchColor("#1A5175", 252, 107,0.8):#if cyrus is not the first:
-                print("found cait!")
-                # escape()
-                cait_encounter_count += 1
-                if common_encounter_count > 0:
-                    common_encounter_count -= 1
-                swap()
-                boost_Atk()
-                time.sleep(10)
-                wait_Battle()
-                print("fight 2nd roung")
-                swap()
-                boost_Atk()
-                time.sleep(5)
-                tap_Until_Exsit(Menu, ATK)
-                print("finish battle")
-            else:
-                print("start battle")
-                select_char_and_skill(characters_array, skills_array,1,1)
-            #     delay_tap(1943, 118)
-            #     delay_tap(1416, 781)
-                common_encounter_count += 1
-                battle_count += 1
-                print("start clicking until finsh battle")
-                tap_Until_Exsit(Menu, ATK)
-                print("finish battle")
+            while True:
+                if xp.matchColor("#962B2B", 267, 123,0.85):
+                    print("found cait!")
+                    # escape()
+                    cait_encounter_count += 1
+                    if common_encounter_count > 0:
+                        common_encounter_count -= 1
+                    swap()
+                    boost_Atk()
+                    time.sleep(10)
+                    wait_Battle()
+                    swap()
+                    boost_Atk()
+                    time.sleep(5)
+                    tap_Until_Exsit(Menu, ATK,20)
+                    print("finish battle")
+                    break
+                elif xp.matchColor("#17486A", 291, 102,0.9):
+                    print("start battle")
+                    select_char_and_skill(characters_array, skills_array,1,1)
+                    common_encounter_count += 1
+                    battle_count += 1
+                    print("start clicking until finsh battle")
+                    tap_Until_Exsit(Menu, ATK,20)
+                    print("finish battle")
+                    break
             xp.toast("normal " + str(battle_count) + "  " + "Cait: " + str(cait_encounter_count))
             if common_encounter_count == round_per_recover:
                 break
@@ -118,10 +118,12 @@ def run_script_battle(characters_array, skills_array,round_per_recover):
                 delay_tap(Monster_Loc[0], Monster_Loc[1])  # farm location
                 time.sleep(2)
         # return to hotel
+        print("open map")
         tap_After_checking(World_Map,8)
         # delay_tap(224, 452)  # tap world type
         time.sleep(0.5)
         # zoom_map()
+        print("tap town")
         delay_tap(Town_Loc[0],Town_Loc[1])  # tap town
         Locate_Wild()
 
