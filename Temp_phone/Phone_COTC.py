@@ -60,7 +60,7 @@ def tap_once_After_checking(val, input_count=-1):
         elif count == input_count:
             break
         else:
-            print(str(val) + "not found after checking, cant tap")
+            print(str(val) + " counts, not found after checking, cant tap")
             time.sleep(0.5)
             count += 1
 
@@ -110,7 +110,7 @@ def tap_Until_Exsit(val, tap_where,limit = 100):
     count = 0
     while True:
         if not xp.matchColor(color, x, y,0.9) and count < limit:
-            xp.tap(x2, y2)  # where I should tap
+            xp.tap(x2, y2)  
             time.sleep(0.4)
             count += 1
         else:
@@ -132,20 +132,10 @@ def tap_After_checking(val, input_count = -1):
                 else:
                     xp.tap(x, y)
                     time.sleep(0.4)
+                    count += 1
+                    print(str(val) + "not found after checking, cant tap")
                 if count == input_count:
                     break
-        else:
-            print(str(val) + "not found after checking, cant tap")
-            time.sleep(0.5)
-            count += 1
-
-
-def find_lv70_cat():
-    ret = xp.matchColor("#151518", 266, 101, 0.9)
-    if ret:
-        return True
-    else:
-        return False
 
 
 def checking_Color(val):
@@ -160,7 +150,7 @@ def checking_Color(val):
             print("not there")
             count += 1
             if count > 60:
-                return False  # changed from break, might impact other things???
+                return False 
             time.sleep(1)
 
 
@@ -231,30 +221,25 @@ def press_until_SeeColor(val):
 def boost_Atk():
     delay_tap(Boost[0], Boost[1])  # boost
     only_atk()
-    # double_tap(ATK[0],ATK[1])  # atk.
 
 
 def swap():
     delay_tap(1430, 957)  # swap
 
 
-def select_char_and_skill(characters, skills, atk_mode=1, end=0, divine_beast=0):
+def select_char_and_skill(characters, skills, end=0, divine_beast=0):
     for char, skill in zip(characters, skills):
         select_char(char, skill)
         select_skill(char, skill)
     if divine_beast == 1:
         divine_beast()
-    if atk_mode == 1:
-        only_atk()
-    elif atk_mode == 2:
-        boost_Atk()
     if end != 1:
         time.sleep(5)
         wait_Battle()
     else:
         time.sleep(5)
 
-
+#@
 def select_char(va, skill):
     if skill[0] != 0:
         delay_tap(1937, 128 + (va - 1) * 223)
@@ -264,10 +249,10 @@ def only_atk():
     tap_After_checking(atk, 50)
 
 
-# skills_array = [-1,3,4,1,1]
-# skills_array = [Skill location, BP, point_to skill(1-4) ,pet , pet BP,pet point to]
-# swap row: -
-# Ultimate:100
+# skills_array = [-1,               3,    31,                            1,         3,          1]
+# skills_array = [Skill location, BP, point_to skill(1-4)(21-22)(31-33) ,pet , pet BP,pet point to]
+# swap row: -?
+# Ultimate:100(pet tab), 101(no pet)
 def select_skill(char, value):
     va = value[0]
     bp = value[1] if len(value) > 1 else 0
@@ -276,6 +261,7 @@ def select_skill(char, value):
     pet_bp = value[4] if len(value) > 4 else 0
     pet_point_to = value[5] if len(value) > 5 else 0
 
+    #default values before *
     skill_slot_x = 1587
     skill_slot_y = 300
     pet_skill_slot_x = 1265
@@ -287,9 +273,10 @@ def select_skill(char, value):
 
     # select pet skill first
     if pet != 0:
-        if pet < 0:
+        if pet < 0:#swap row
             delay_tap(1951, 962)
             time.sleep(0.5)
+
         delay_tap(1365, 126)
         double_tap(1631, 329)
         if pet_bp == 0 and pet > 0:
@@ -303,12 +290,8 @@ def select_skill(char, value):
             delay_tap(char_banner_x, char_banner_y + ((pet_point_to - 1) * 217))
         wait_Battle()
         select_char(char, value)
-        # do i need this twice???
-    #   if va < 0:
-    #       delay_tap(1951, 962)
-    #       va = abs(va)
-    #       time.sleep(0.5)
-    # swap rows
+
+    # main char swap rows
     if va < 0:
         delay_tap(1951, 962)
         va = abs(va)
@@ -334,7 +317,7 @@ def select_skill(char, value):
         xp.swipe(skill_slot_x, skill_slot_y + ((va - 1) * 162), skill_slot_x + 144 + (bp * 120),
                  skill_slot_y + ((va - 1) * 162), 0.5)
         time.sleep(0.7)
-    #######ultimate######
+    ####### ultimate ######
     if va == 100:# when there is pet tab
         delay_tap(1427, 118)  # open box
         delay_tap(1313, 312)  # ult window
@@ -344,7 +327,7 @@ def select_skill(char, value):
         delay_tap(1339, 124)  # open box
         delay_tap(1717, 695)  # activate
         time.sleep(0.5)
-    #######pointing to teammate's skill######
+    ####### pointing to teammate's skill ######
     if point_to > 0 and point_to < 10:
         delay_tap(char_banner_x, char_banner_y + ((point_to - 1) * 217))
 
