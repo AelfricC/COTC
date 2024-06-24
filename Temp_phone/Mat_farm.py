@@ -125,8 +125,47 @@ def run_script_battle(characters_array, skills_array,round_per_recover):
         # zoom_map()
         print("tap town")
         delay_tap(Town_Loc[0],Town_Loc[1])  # tap town
-        time.sleep(0.4)
         Locate_Wild()
+
+### Not in use now
+def local_mat_farm():
+    launch_game()
+    characters_array = [1, 2, 0, 0]
+    skills_array1 = [[4], [4, 0, 1], [0], [0]]  # recover
+    skills_array2 = [[4], [3, 0], [0], [0]]  # abosorb
+    battle_count = 0
+    cait_encounter_count = 0
+    while True:
+        print("swping")
+        swipe_Until_Black()
+        print("stop siwping")
+        wait_Battle()
+        if find_lv70_cat():
+            boost_Atk()
+            # wait_Battle()
+            time.sleep(10)
+            wait_Battle()
+            print("fight 2nd roung")
+            swap()
+            boost_Atk()
+            time.sleep(10)
+            wait_Battle()
+            boost_Atk()
+            tap_Until_Exsit(Menu, ATK)
+            cait_encounter_count += 1
+            print("finish battle")
+        else:
+            if battle_count % 3 == 0:
+                select_char_and_skill(characters_array, skills_array2) #absorb
+                boost_Atk()
+            else:
+                select_char_and_skill(characters_array, skills_array1) #recover
+                boost_Atk()
+            battle_count += 1
+            print("start clicking until finsh battle")
+            tap_Until_Exsit(Menu, ATK)
+            print("finish battle")
+        xp.toast("normal " + str(battle_count) + "  " + "Cait: " + str(cait_encounter_count))
 
 run_script_battle(characters_array, skills_array,round_per_recover)
 #local_mat_farm()

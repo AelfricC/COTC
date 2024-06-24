@@ -11,9 +11,12 @@ def Master():
     count = 0
     print("start")
     characters_array = [1, 2, 3, 4]
-    skills_array1 = [[3], [3], [4,3], [4, 3]]
-    skills_array2 = [[4,3], [12,3], [1], [2]]
+    skills_array1 = [[3], [3,1], [4,3], [4, 3]]
     while True:
+        if count % 2 == 0:
+            skills_array2 = [[4, 3], [12, 3], [-4,3,1], [2]]
+        else:
+            skills_array2 = [[4, 3], [12, 3], [-4, 3, 2], [2]]
         tap_After_checking(battle_icon_InTower, -1)
         tap_After_checking(battle_icon_InTower_confirm, -1)
         wait_Battle()
@@ -41,6 +44,20 @@ def Job():
         time.sleep(9)
         xp.toast("this is " + str(count))
 
+def Job_Cait():
+    count = 0
+    print("start")
+    characters_array = [1, 2, 3, 4]
+    skills_array1 = [[2], [2], [2], [2]]
+    tap_After_checking(battle_icon_InTower, -1)
+    double_tap(1377, 666)
+    tap_Until_Exsit(Battle_Screen,Middle_Screen)
+    wait_Battle()
+    double_fast_tap(528, 733)
+    tap_Until_Exsit(battle_icon_InTower, battle_icon_InTower_xy)
+    tap_Until_Exsit(battle_icon_InTower, battle_icon_InTower_xy)
+    time.sleep(2)
+    tap_Until_Exsit(battle_icon_InTower, battle_icon_InTower_xy)
 
 def Elite_1ST(): #21-x(turn =
     print("start")
@@ -148,7 +165,7 @@ if tower_name == "Elite_1ST" or tower_name == "Elite_2ND":
     battle_icon_InTower_confirm = ["#FCFCFC", 1391, 804]
 elif tower_name == "Master":
     battle_icon_InTower_confirm = ["#EBEDEE", 1393, 718]
-elif tower_name == "Job":
+elif tower_name == "Job" or tower_name == "Job_Cait":
     battle_icon_InTower_confirm = ["#FCFCFC", 1391, 645]
 launch_game()
 if tower_name == "Master":
@@ -159,3 +176,5 @@ elif tower_name == "Elite_2ND":
     Elite_2ND()
 elif tower_name == "Job":
     Job()
+elif tower_name == "Job_Cait":
+    Job_Cait()
