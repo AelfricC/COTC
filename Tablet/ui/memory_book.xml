@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:padding="30dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Memory book"/>
+
+        <ScrollView
+                android:id="@+id/scrollview_choices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true" >
+            <RadioGroup
+                    android:id="@+id/book_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                <RadioButton
+                        android:id="@+id/Nut"
+                        android:text="Nut"
+                        android:checked="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                <RadioButton
+                        android:id="@+id/Else"
+                        android:text="Else"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+            </RadioGroup>
+        </ScrollView>
+
+    </LinearLayout>
+</FrameLayout>
