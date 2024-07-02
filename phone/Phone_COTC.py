@@ -1,7 +1,6 @@
 import time
 from xiaopy import *
 
-
 # X,Y with color
 Map_Proceed = ["#1E5167", 2561, 1550] #["#23586F", 2549, 1557]
 Map_Ok = ["#22576E", 2022, 1213]
@@ -19,7 +18,7 @@ pet_use = ["#3F7787", 2264, 1306]
 ally = ["#EEEAE5", 1522, 1556]
 divine_tap = ["#989590", 2217, 371]
 confirm_beast = ["#326478", 1919, 1492]
-zoom_icon = ["#0B0B0B", 1988, 971]
+zoom_icon = ["#171615", 2810, 1611]
 battle_icon_InTower = ["#F5F6F6", 1880, 953]
 battle_icon_InTower_confirm = ["#FCFCFC", 1391, 804]
 # X,Y with no color
@@ -29,14 +28,9 @@ Escape = [1251, 1634]
 Middle_Screen = [1453, 1089]
 Mini_Map = [2458, 334]
 Rest_OK = [1439, 1205]
-battle_icon_InTower_xy = [1880, 953]
+battle_icon_InTower_xy = [2617, 1551]
+close_window = [2846, 127]
 
-#farm const
-Tap_Host = ["#EEE6DD", 1780, 724]
-Wild_Loc = [1441, 722]
-Town_Loc = [1463, 1117]
-Monster_Loc = [1105, 697]
-Arrive_In_Sec = 4.5
 
 def delay_tap(x, y):
     time.sleep(0.4)
@@ -49,172 +43,112 @@ def double_tap(x, y):
     time.sleep(0.3)
     xp.tap(x, y)
 
-def double_fast_tap(x,y):
-    count = 0
-    while True:
-        if count < 3:
-            xp.tap(x, y)
-            time.sleep(0.3)
-            count += 1
-        else:
-            break
-def tap_After_checking(val,input_count):
+
+def double_fast_tap(x, y):
+    xp.tap(x, y)
+    time.sleep(0.3)
+    xp.tap(x, y)
+
+
+def tap_once_After_checking(val, input_count=-1):
     count = 0
     color, x, y = val
     while True:
         if xp.matchColor(color, x, y, 0.8):
-            xp.tap(x, y)
-            print("Tapped")
-            while True:
-                if not xp.matchColor(color, x, y, 0.8):
-                    print("chekced and clicked, go to proceed")
-                    return
-                else:
-                    print("need to tap again, still can see it")
-                    xp.tap(x, y)
-                    time.sleep(0.3)
-        elif count == input_count :
+            time.sleep(1)
+            delay_tap(x, y)
+            return True
+        elif count == input_count:
             break
         else:
             print(str(val) + "not found after checking, cant tap")
             time.sleep(0.5)
             count += 1
-def select_char_and_skill(characters, skills):
-    for char, skill in zip(characters, skills):
-        select_char(char,skill)
-        select_skill(char,skill)
-
-def select_char(va,skill):
-    if skill[0] != 0:
-        delay_tap(2570,259 + (va -1) * 336 )
-
-def only_atk():
-    tap_After_checking(atk,50)
-# skills_array = [-1,3,4,1,1]
-# skills_array = [Skill location, BP, point_to skill(1-4) ,pet , pet BP]
-# swap row: -
-# Ultimate:100
-def select_skill(char,value):
-    skill_slot_x = 2000
-    skill_slot_y = 544
-    pet_skill_slot_x = 1447
-    pet_skill_slot_y = 789
-
-    va = value[0]
-    bp = value[1] if len(value) > 1 else 0
-    point_to = value[2] if len(value) > 2 else 0
-    pet = value[3] if len(value) > 3 else 0
-    pet_bp = value[4] if len(value) > 4 else 0
-
-    #swap rows
-    if va < 0:
-        delay_tap(2563, 1557)
-        time.sleep(0.5)
-    #select pet skill first
-    if pet > 0:
-        delay_tap(1621, 270)
-        if pet_bp == 0 and pet > 0:
-            tap_After_checking(pet_use,10)
-        elif pet_bp >= 1:
-            #check if 3 bp works?
-            xp.swipe(pet_skill_slot_x, pet_skill_slot_y, pet_skill_slot_x + 235 + (pet_bp * 190),
-                     pet_skill_slot_y, 0.5)
-            tap_After_checking(pet_use, 10)
-        time.sleep(3)
-        select_char(char, value)
-        if va < 0:
-            delay_tap(2563, 1557)
-            va = abs(va)
-            time.sleep(0.5)
-    #normal skill selection
-    if bp == 0 and va > 0 and va < 10:
-        delay_tap(skill_slot_x,skill_slot_y + ((va - 1)  * 247))
-    elif bp >= 1 and va > 0 and va < 10:
-        xp.swipe(skill_slot_x,skill_slot_y + ((va - 1) * 247),skill_slot_x + 231 + (bp * 190),skill_slot_y + ((va - 1) * 247),0.5)
-        time.sleep(0.7)
-    #ultimate
-    if va == 100:
-        tap_After_checking(ultimate,20)
-        delay_tap(1593, 265)
-        time.sleep(0.5)
-        delay_tap(2168, 1140)
-    #pointing to teammate's skill
-    if point_to > 0:
-        char_banner_x = 0
-        char_banner_y = 0
-        delay_tap(char_banner_x,char_banner_y + (point_to * '?'))
-# characters_array = [1, 2, 3, 4]
-# skills_array = [[-1,3,1], [2,2], [2,1], [1,0]]
-# select_char_and_skill(characters_array, skills_array)
-
-def divine_beast():
-    tap_After_checking(ally,-1)
-    tap_After_checking(divine_tap,-1)
-    double_fast_tap(1534, 551)
-    tap_After_checking(confirm_beast,-1)
 
 
-def escape(val):
-    if val == 1:
-        print("jjc")
-        double_fast_tap(1259, 1575)
-        double_fast_tap(1900, 1207)
-        tap_After_checking(confirm_return_memory_book,-1)
-        return True
-    else:
-        tap_Until_Exsit(Menu,Escape)
-def check_death(val):
-    if xp.matchColor("#787674", 2689, 257) or xp.matchColor("#787674", 2690, 588) or xp.matchColor("#787674", 2689, 913) or xp.matchColor("#787674", 2690, 1244):
-        if val == 1:
-            escape(val)
-            time.sleep(1.5)
+def wait_Battle():
+    time.sleep(1)
+    while True:
+        if xp.matchColor("#FFFFFF", 2500, 1584,0.9) and xp.matchColor("#E0DCD7", 694, 1576,0.95):
+            print("ready to fight now")
             return True
-
-
-def tap_until_finishBattle():
-    count = 0
-    while count < 150:
-        if not checking_Color(Menu):  # menu location
-            xp.tap(1785, 671)  # middle of the screen
-            time.sleep(0.5)
-            count += 1
-            print(count)
         else:
-            break
+            time.sleep(0.7)
 
 
-def tap_Until_Exsit(val, tap_where):
+def escape(val=0):
+    if val == 1:
+        print("Died in jjc")
+        double_fast_tap(1175, 964)
+        double_fast_tap(1440, 724)
+        tap_After_checking(confirm_return_memory_book, -1)
+        return True
+    if val == 2:
+        print("Died in the tower")
+        double_fast_tap(1175, 964)
+        double_fast_tap(1440, 724)
+        checking_Color(battle_icon_InTower)
+        time.sleep(2)
+        checking_Color(battle_icon_InTower)
+    else:
+        # Daily Farming
+        tap_Until_Exsit(Menu, Escape)
+
+
+def check_death(val):
+    print("checking death")
+    if xp.matchColor("#787674", 2689, 257) or xp.matchColor("#787674", 2690, 588) or xp.matchColor("#787674", 2689,
+                                                                                                   913) or xp.matchColor(
+            "#787674", 2690, 1244):
+        print("someone died")
+        escape(val)
+        time.sleep(1)
+
+
+def tap_Until_Exsit(val, tap_where,limit = 100):
     color, x, y = val
     x2, y2 = tap_where
     count = 0
     while True:
-        if not xp.matchColor(color, x, y, 0.9) and count < 70:
-            xp.tap(x2, y2)  # middle of screen
-            time.sleep(0.5)
+        if not xp.matchColor(color, x, y,0.9) and count < limit:
+            xp.tap(x2, y2)  # where I should tap
+            time.sleep(0.4)
             count += 1
         else:
-            print("found it and stop tapping")
-            time.sleep(1.2)
+            print("found it and stop tapping, count = " + str(count))
+            time.sleep(1)
             break
 
 
-def tap_Until_Disappear(val):
+def tap_After_checking(val, input_count = -1):
+    count = 0
     color, x, y = val
     while True:
-        if xp.matchColor(color, x, y, 0.9):
+        if xp.matchColor(color, x, y, 0.8):
             xp.tap(x, y)
-            time.sleep(0.4)
+            while True:
+                if not xp.matchColor(color, x, y, 0.8):
+                    print("chekced and clicked, go to proceed")
+                    return True
+                else:
+                    xp.tap(x, y)
+                    time.sleep(0.4)
+                if count == input_count:
+                    break
         else:
-            print("disappeared and stop tapping")
-            time.sleep(0.5)#was 1
-            break
+            print(str(val) + "not found after checking, cant tap")
+            time.sleep(0.5)
+            count += 1
+
 
 def find_lv70_cat():
-    ret = xp.matchColor("#701F1F", 1366, 247,1)
+    ret = xp.matchColor("#151518", 266, 101, 0.9)
     if ret:
         return True
     else:
         return False
+
+
 def checking_Color(val):
     color, x, y = val
     count = 0
@@ -227,60 +161,56 @@ def checking_Color(val):
             print("not there")
             count += 1
             if count > 60:
-                break
+                return False  # changed from break, might impact other things???
             time.sleep(1)
+
 
 def checking_color_once(val):
     color, x, y = val
-    if xp.matchColor(color, x, y,0.95):
+    if xp.matchColor(color, x, y, 0.95):
         print("checked")
         return True
 
-def swipe_Until_Black():
+
+def swipe_Until_Black(va=1):
+    # va = 1: left right, 2: up down
     count = 0
     flip = 1
     while True:
-        if not xp.matchColor("#000000", 1469, 1000):
-            if flip % 2 == 0:
-                xp.swipe(588, 1141,1514, 701,0.3)
-                # time.sleep(0.3)
-                flip += 1
-                count += 1
-            else:
-                xp.swipe(1514, 701, 588, 1141, 0.3)
-                # time.sleep(0.3)
-                flip += 1
-                count += 1
-            time.sleep(0.4)
-        elif count > 30:
-            game_restart(2)
-            tap_Until_Disappear(World_Map)
-            time.sleep(0.5)
-            delay_tap(Town_Loc[0],Town_Loc[1])  # tap town
-            run_script_battle()
-        else:
-            time.sleep(0.4)
+        if xp.matchColor("#000000", 1132, 584) and xp.matchColor("#000000", 1909, 205):
+            print("black screen now and stop swiping")
             break
-def wait_Battle():
-    time.sleep(1)
-    while True:
-        if checking_Color(Battle_Screen):
-            print("ready to fight now")
-            return True
         else:
-            print("not ready to fight")
-            time.sleep(0.7)
+            if va == 1:
+                if flip % 2 == 0:
+                    xp.swipe(588, 1141, 1514, 701, 0.3)
+                    flip += 1
+                elif flip % 2 != 0:
+                    xp.swipe(1514, 701, 588, 1141, 0.3)
+                    flip += 1
+            elif va == 2:#up down
+                if flip % 2 == 0:
+                    xp.swipe(1190, 380, 1235, 1295, 0.3)
+                    flip += 1
+                elif flip % 2 != 0:
+                    xp.swipe(1235, 1295, 1190, 380, 0.3)
+                    flip += 1
+            time.sleep(0.3)
+            count += 1
+            if count >= 40:
+                print("reached maximum swping")
+                break
+
 
 
 def wait_Idle():
     time.sleep(1)
     while True:
         if checking_Color(Menu):
-            print("in the world now")
             break
         else:
-            print("not yet back to world")
             time.sleep(0.7)
+
 
 def press_until_SeeColor(val):
     time.sleep(1.5)
@@ -294,26 +224,150 @@ def press_until_SeeColor(val):
             break
         else:
             print("keep pressing: " + str(count))
-            xp.tap(Middle_Screen[0], Middle_Screen[1], 3)
+            xp.tap(ATK[0], ATK[1], 3)
             count += 1
             time.sleep(3)
+
+
 def boost_Atk():
-    delay_tap(Boost[0],Boost[1])  # boost
-    double_tap(ATK[0],ATK[1])  # atk.
+    delay_tap(Boost[0], Boost[1])  # boost
+    only_atk()
+    # double_tap(ATK[0],ATK[1])  # atk.
 
 
 def swap():
-    delay_tap(1743, 1563)  # swap
+    delay_tap(1735, 1568)  # swap
 
-def wait_BlackScreen():
-    if xp.matchColor("#000000", 1429, 1128,1):
-        time.sleep(1)
-        print("waiting")
+
+def select_char_and_skill(characters, skills, atk_mode=1, end=0, divine_beast=0):
+    for char, skill in zip(characters, skills):
+        select_char(char, skill)
+        #if char != 4:
+        select_skill(char, skill)
+    if divine_beast == 1:
+        divine_beast()
+    if atk_mode == 1:
+        only_atk()
+    elif atk_mode == 2:
+        boost_Atk()
+    if end != 1:
+        time.sleep(5)
+        wait_Battle()
     else:
-        wait_Idle()
+        time.sleep(5)
+
+
+def select_char(va, skill):
+    if skill[0] != 0:
+        delay_tap(2570,259 + (va -1) * 336 )
+
+
+def only_atk():
+    tap_After_checking(atk, 50)
+
+
+# skills_array = [-1,3,4,1,1]
+# skills_array = [Skill location, BP, point_to skill(1-4) ,pet , pet BP,pet point to]
+# swap row: -
+# Ultimate:100
+def select_skill(char, value):
+    va = value[0]
+    bp = value[1] if len(value) > 1 else 0
+    point_to = value[2] if len(value) > 2 else 0
+    pet = value[3] if len(value) > 3 else 0
+    pet_bp = value[4] if len(value) > 4 else 0
+    pet_point_to = value[5] if len(value) > 5 else 0
+
+    skill_slot_x = 2000
+    skill_slot_y = 544
+    pet_skill_slot_x = 1447
+    pet_skill_slot_y = 789
+
+    #for pointing to teammate
+    char_banner_x = 2570
+    char_banner_y = 259
+
+    # select pet skill first
+    if pet != 0:
+        if pet < 0:
+            delay_tap(2558, 1544)
+            time.sleep(0.5)
+        delay_tap(1623, 264)
+        double_tap(2107, 578)
+        if pet_bp == 0 and pet > 0:
+            delay_tap(2203, 1299)
+        elif pet_bp >= 1:
+            xp.swipe(pet_skill_slot_x, pet_skill_slot_y, pet_skill_slot_x + 235 + (pet_bp * 190),
+                     pet_skill_slot_y, 0.5)
+            time.sleep(0.65)
+            delay_tap(2203, 1299)
+        if pet_point_to != 0:
+            delay_tap(char_banner_x, char_banner_y + ((pet_point_to - 1) * 336))
+        wait_Battle()
+        select_char(char, value)
+        # do i need this twice???
+    #   if va < 0:
+    #       delay_tap(1951, 962)
+    #       va = abs(va)
+    #       time.sleep(0.5)
+    # swap rows
+    if va < 0:
+        delay_tap(2558, 1544)
+        va = abs(va)
+        time.sleep(0.8)
+    # normal skill selection
+    # point to enemy
+    if point_to > 10:
+        if point_to == 31:
+            double_fast_tap(495, 591)
+        elif point_to == 32:
+            double_fast_tap(773, 707)
+        elif point_to == 33:
+            double_fast_tap(998, 516)
+    #####Elrica shift style
+    if va > 10 and va < 20:
+        double_fast_tap(2205, 178)
+        time.sleep(3)
+        va = va - 10
+    ######Char select skill######
+    if bp == 0 and va > 0 and va < 10:
+        delay_tap(skill_slot_x, skill_slot_y + ((va - 1) * 247))
+    elif bp >= 1 and va > 0 and va < 10:
+        xp.swipe(skill_slot_x, skill_slot_y + ((va - 1) * 247), skill_slot_x + 231 + (bp * 227),
+                 skill_slot_y + ((va - 1) * 247), 0.5)
+        time.sleep(0.7)
+    #######ultimate######
+    if va == 100:# when there is pet tab
+        delay_tap(1615, 290)  # open box
+        delay_tap(1657, 572)  # ult window
+        delay_tap(2174, 1308)  # activate
+        time.sleep(0.5)
+    elif va == 101: #in the tower, no pet
+        delay_tap(1615, 290)  # open box
+        delay_tap(2132, 1143)  # activate
+        time.sleep(0.5)
+    #######pointing to teammate's skill######
+    if point_to > 0 and point_to < 10:
+        delay_tap(char_banner_x, char_banner_y + ((point_to - 1) * 336))
+
+
+# characters_array = [1, 2, 3, 4]
+# skills_array = [[2,1], [2,1], [2,1], [2,1]]
+# select_char_and_skill(characters_array, skills_array,1,1)
+
+def divine_beast():
+    double_fast_tap(1490, 1564)
+    double_fast_tap(2256, 362)
+    delay_tap(1457, 602)
+
 
 def launch_game():
     xp.launchApp("com.square_enix.android_googleplay.octopathw", "com.epicgames.ue4.SplashActivity")
+    time.sleep(1)
+
+def zoom_map():
+    tap_once_After_checking(zoom_icon, -1)
+
 
 def game_restart(va):
     xp.home()
@@ -321,102 +375,17 @@ def game_restart(va):
     xp.launchApp("com.square_enix.android_googleplay.octopathw", "com.epicgames.ue4.SplashActivity")
     if va == 1:
         tap_Until_Exsit(moloply_restart_confirm, Middle_Screen)
-        tap_After_checking(moloply_restart_confirm,-1)
+        tap_After_checking(moloply_restart_confirm, -1)
     elif va == 2:
         tap_Until_Exsit(Menu, Middle_Screen)
-def check_any_of_this(positions,count = 0):
-    clickcount = 0
-    if count != 0:
-        clickcount = len(positions) - count
-    while clickcount < len(positions):
-        for position in positions:
-            color, x, y = position
-            if xp.matchColor(color, x, y,0.9):
-                print("tap "+str(position))
-                xp.tap(x,y)
-                time.sleep(0.7)
-                clickcount += 1
-                print("count = "+str(clickcount))
-            elif clickcount == len(positions):
-                break
-            else:
-                print("found nothing " + str(position))
-                time.sleep(0.4)
-def Locate_Wild():
-    #time.sleep(6)
-    double_fast_tap(Map_Proceed[1],Map_Proceed[2])  # proceed
-    print("procced, gonna click ok to tele")
-    tap_After_checking(Map_Ok,15)  # ok
-    wait_Idle()
-    tap_Until_Disappear(Enter_Holtel)  # enter hotel
-    print("Enter hotel")
-    wait_Idle()
-    print("Tap the host")
-    tap_Until_Disappear(Tap_Host)  # click host
-    tap_Until_Exsit(Comfirm_To_Rest, Middle_Screen)
-    print("ok to rest")
-    tap_Until_Disappear(Comfirm_To_Rest)
-    print("ok")
-    tap_Until_Exsit(Menu, Rest_OK)
-    print("open world map")
-    tap_Until_Disappear(World_Map)
-    delay_tap(203, 691)  # tap Hell type
-    delay_tap(Wild_Loc[0], Wild_Loc[1])  # tap wild
-    double_fast_tap(Map_Proceed[1],Map_Proceed[2])  # proceed
-    tap_After_checking(Map_Ok,15)  # ok
-    # arrive wild
-    checking_Color(Menu)
-    print("open mini map")
-    delay_tap(Mini_Map[0], Mini_Map[1])  # open mini map
-    delay_tap(Monster_Loc[0], Monster_Loc[1])  # farm location
-    time.sleep(Arrive_In_Sec)
 
-def run_script_battle(characters_array, skills_array,round_per_recover):
-    launch_game()
-    Locate_Wild()
-    battle_count = 0
-    cait_encounter_count = 0
+
+def check_here_tap_there(check_va, tap_val):
     while True:
-        common_encounter_count = 0
-        while True:
-            print("swping")
-            swipe_Until_Black()
-            wait_Battle()
-            if find_lv70_cat():
-                print("found cait!")
-                cait_encounter_count += 1
-                if common_encounter_count > 0:
-                    common_encounter_count -= 1
-                swap()
-                boost_Atk()
-                #wait_Battle()
-                time.sleep(10)
-                wait_Battle()
-                print("fight 2nd roung")
-                swap()
-                boost_Atk()
-                tap_Until_Exsit(Menu, ATK)
-                print("finish battle")
-            else:
-                print("start battle")
-                select_char_and_skill(characters_array, skills_array)
-                boost_Atk()
-                common_encounter_count += 1
-                battle_count += 1
-                print("start clicking until finsh battle")
-                tap_Until_Exsit(Menu, ATK)
-                print("finish battle")
-            xp.toast("normal " + str(battle_count) + "  " + "Cait: " + str(cait_encounter_count))
-            if common_encounter_count == round_per_recover:
-                break
-            if common_encounter_count == 1:
-                print("open mini map")
-                delay_tap(Mini_Map[0], Mini_Map[1])  # open mini map
-                delay_tap(Monster_Loc[0], Monster_Loc[1])  # farm location
-                time.sleep(2)
-        # return to hotel
-        tap_Until_Disappear(World_Map)
-        # delay_tap(224, 452)  # tap world type
-        time.sleep(0.5)
-        delay_tap(Town_Loc[0],Town_Loc[1])  # tap town
-        Locate_Wild()
+        if checking_Color(check_va):
+            print("Found color and going to tap")
+            tap_once_After_checking(tap_val)
+            break
+        else:
+            print("Can't see it yet")
+            time.sleep(0.5)
