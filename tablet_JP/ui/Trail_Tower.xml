@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:padding="30dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Trail_Tower Script"/>
+
+        <RadioGroup
+                android:id="@+id/tower_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+            <RadioButton
+                    android:id="@+id/Job"
+                    android:text="Job"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <RadioButton
+                    android:id="@+id/Job_Cait"
+                    android:text="Job_Cait"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <RadioButton
+                    android:id="@+id/Master"
+                    android:text="Master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <RadioButton
+                    android:id="@+id/Elite_1ST"
+                    android:text="Elite_1ST"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <RadioButton
+                    android:id="@+id/Elite_2ND"
+                    android:text="Elite_2ND"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </RadioGroup>
+    </LinearLayout>
+</FrameLayout>
