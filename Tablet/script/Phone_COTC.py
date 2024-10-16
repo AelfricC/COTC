@@ -224,7 +224,7 @@ def press_until_SeeColor(val):
             break
         else:
             print("keep pressing: " + str(count))
-            xp.tap(ATK[0], ATK[1], 3)
+            xp.tap(Middle_Screen[0], Middle_Screen[1], 3)
             count += 1
             time.sleep(3)
 
@@ -250,6 +250,8 @@ def select_char_and_skill(characters, skills, atk_mode=1, end=0, divine_beast=0)
         only_atk()
     elif atk_mode == 2:
         boost_Atk()
+    elif atk_mode == 3:
+        return
     if end != 1:
         time.sleep(5)
         wait_Battle()
@@ -329,11 +331,15 @@ def select_skill(char, value):
         double_fast_tap(2205, 178)
         time.sleep(3)
         va = va - 10
+    if va == 1101 or va == 1100:
+        double_fast_tap(2205, 178)
+        time.sleep(3)
+        va = va - 1000
     ######Char select skill######
     if bp == 0 and va > 0 and va < 10:
         delay_tap(skill_slot_x, skill_slot_y + ((va - 1) * 247))
     elif bp >= 1 and va > 0 and va < 10:
-        xp.swipe(skill_slot_x, skill_slot_y + ((va - 1) * 247), skill_slot_x + 231 + (bp * 227),
+        xp.swipe(skill_slot_x, skill_slot_y + ((va - 1) * 247), skill_slot_x + 228 + (bp * 225),
                  skill_slot_y + ((va - 1) * 247), 0.5)
         time.sleep(0.7)
     #######ultimate######
@@ -352,8 +358,8 @@ def select_skill(char, value):
 
 
 # characters_array = [1, 2, 3, 4]
-# skills_array = [[2,1], [2,1], [2,1], [2,1]]
-# select_char_and_skill(characters_array, skills_array,1,1)
+# skills_array = [[100], [100], [3], [1100]]
+# select_char_and_skill(characters_array, skills_array,3,1)
 
 def divine_beast():
     double_fast_tap(1490, 1564)
@@ -362,7 +368,7 @@ def divine_beast():
 
 
 def launch_game():
-    xp.launchApp("com.square_enix.android_googleplay.octopathw", "com.epicgames.ue4.SplashActivity")
+    xp.launchApp("com.square_enix.android_googleplay.octopathj", "com.epicgames.ue4.SplashActivity")
     time.sleep(1)
 
 def zoom_map():

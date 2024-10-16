@@ -7,11 +7,13 @@ ad_button = ["#FFFFFF", 2307, 1448]
 accept_reward = ["#FFFFFF", 2605, 320]
 def ad_cait():
     launch_game()
+    icon_find = 0
     count = 0
+    print("started")
+    tap_Until_Exsit(World_Map,Middle_Screen)
     tap_After_checking(World_Map)
     double_fast_tap(307, 444)
     zoom_map()
-    #xp.swipe(1711, 527,1009, 1258)
     time.sleep(1)
     while True:
         ret = xp.findImage("nameless_town.png", 46, 163, 2850, 1666,0.7)
@@ -23,15 +25,19 @@ def ad_cait():
             delay_tap(1959, 1456)
             tap_Until_Exsit(Menu,close_window)
             print("back to menu")
-            time.sleep(1)
-            double_fast_tap(2221, 668)
+            delay_tap(169, 1431)
+            time.sleep(0.5)
+            delay_tap(909, 1457)
             tap_once_After_checking(accept_reward)
             tap_Until_Exsit(Menu,close_window)
             tap_Until_Exsit(Menu, close_window)
             break
+        elif icon_find > 8:
+            tap_Until_Exsit(Menu, close_window)
+            break
         else:
-            print("not found yet")
-            time.sleep(0.5)
+            time.sleep(0.3)
+            icon_find += 1
     while True:
         wait_Idle()
         if count < 5:
@@ -44,5 +50,6 @@ def ad_cait():
             xp.toast(str(count))
         else:
             xp.toast("Completed")
+            xp.home()
             break
 ad_cait()

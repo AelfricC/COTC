@@ -17,7 +17,7 @@ Wild_Loc = [1466, 718]
 Town_Loc = [1486, 1111]
 Monster_Loc = [1105, 697]
 Arrive_In_Sec = 4
-round_per_recover = 20
+round_per_recover = 22
 
 
 def tap_map_loc(va):
@@ -96,7 +96,7 @@ def run_script_battle(characters_array, skills_array,round_per_recover):
                     # escape()
                     cait_encounter_count += 1
                     if common_encounter_count > 0:
-                        common_encounter_count -= 1
+                        common_encounter_count -= 2
                     swap()
                     boost_Atk()
                     time.sleep(10)

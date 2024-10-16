@@ -3,81 +3,63 @@ import subprocess
 from xiaopy import *
 #from cotc import COTC
 from Phone_COTC import *
-play = ["#FEFEFE", 1362, 843]
-board_idle = ["#F8F5F4", 514, 877]
-after_final_boss = ["#AB8D49", 975, 504]
+play = ["#FFFFFF", 2633, 1474]
+board_idle = ["#F6F4F2", 517, 1438]
+after_final_boss = ["#FFFFFF", 1391, 710]
 def battle1():
     double_fast_tap(538, 666)#point left enemy
     characters_array = [1, 2, 3, 4]
-    skills_array1 = [[13], [4, 3], [2,0,0,-1,3], [3, 3]]
-    skills_array2 = [[0], [100], [0], [100]]
-    skills_array3 = [[3,3], [3,3], [-100,0,1], [2,2]]
-    select_char_and_skill(characters_array, skills_array1)
-    select_char_and_skill(characters_array, skills_array2)
-    select_char_and_skill(characters_array, skills_array3, 1, 1)
-def battle2():
-    double_fast_tap(440, 590)#point last left enemy
-    characters_array = [1, 2, 3, 4]
-    skills_array1 = [[4], [4, 3], [2,3,0,-1,3], [3, 3]]
-    skills_array2 = [[4,3], [100], [100], [100]]
-    skills_array3 = [[12,3], [3,2], [-100,0,1], [2,2]]
-    select_char_and_skill(characters_array, skills_array1)
-    select_char_and_skill(characters_array, skills_array2)
-    select_char_and_skill(characters_array, skills_array3, 1, 1)
+    skills_array1 = [[2,3], [4, 3], [100,0,1,1,3], [12,3]]
+    select_char_and_skill(characters_array, skills_array1, 1, 1)
 def battle3():
     characters_array = [1, 2, 3, 4]
-    skills_array1 = [[4], [4, 3], [4,3,0,-1,3], [3, 3]]
-    skills_array2 = [[12,2], [-1,3], [100], [2]]
-    skills_array3 = [[3,3], [-100], [-100,0,1], [100]]
+    skills_array1 = [[-4], [4, 3], [-4,3,0,1,3], [4,1]]
+    skills_array2 = [[-2,3], [100], [-100,0,4], [13,3]]
     select_char_and_skill(characters_array, skills_array1)
-    select_char_and_skill(characters_array, skills_array2)
-    select_char_and_skill(characters_array, skills_array3, 1, 1)
+    select_char_and_skill(characters_array, skills_array2, 1, 1)
 def battle4():
     characters_array = [1, 2, 3, 4]
-    skills_array1 = [[4], [4, 3], [4,3,0,-1,3], [-2, 3]]
-    skills_array2 = [[4,1], [-1,3], [2], [-3,3]]
-    skills_array3 = [[14,3], [-100], [100], [2,2]]
-    skills_array4 = [[2,3,0,-1,3,1], [3], [-100, 0, 1], [100]]
+    skills_array1 = [[-4], [4, 3], [-4,3,0,1,3], [4]]
+    skills_array2 = [[2,3], [2], [100], [2,3]]
+    skills_array3 = [[100], [100], [3], [1100]]
+    skills_array4 = [[-2,3], [0], [-100, 0, 4,1,3,4], [2,3]]
     select_char_and_skill(characters_array, skills_array1)
     select_char_and_skill(characters_array, skills_array2)
     select_char_and_skill(characters_array, skills_array3)
     select_char_and_skill(characters_array, skills_array4, 1, 1)
 def dragon_board():
     launch_game()
-    ticket_count = 0
-    strength_count = 0
     battle_count = 0
     cut_scen = 0
     while True:
-        if (xp.matchColor("#D0C4B4", 793, 929) and xp.matchColor("#FEFEFE", 1890, 906)) or (xp.matchColor("#FFFFFF", 1108, 421) and xp.matchColor("#F0EBE8", 1309, 225) and xp.matchColor("#FFFFFF", 1460, 435)):
-            double_fast_tap(1893, 902)#play
+        if xp.matchColor("#F0EBE8", 1163, 435) and xp.matchColor("#F0EBE8", 1295, 426) and xp.matchColor("#F0EBE8", 1441, 450) and xp.matchColor("#F0EBE8", 1646, 437) and xp.matchColor("#F0EBE8", 1734, 437) and xp.matchColor("#666057", 551, 1554):
+            double_fast_tap(2592, 1464)#play
             print("start adding tickets")
             while True:#putting ticket and strenth
-                # double_fast_tap(660, 415)
-                # ticket_count = 1
-                if not xp.matchColor("#FDFDFD", 791, 421) and not xp.matchColor("#FFFFFF", 773, 439):
-                    double_fast_tap(911, 433)
-                else:
-                    ticket_count = ticket_count+ 1
-                if not xp.matchColor("#F9F9F9", 1500, 413) and not xp.matchColor("#E2E2E2", 1481, 446) and not xp.matchColor("#E4E4E4", 1503, 438):
-                    double_fast_tap(1608, 432)
-                else:
-                    strength_count = strength_count + 1
-                if strength_count > 0 and ticket_count > 0:
-                    ticket_count = 0
-                    strength_count = 0
+                if xp.matchColor("#FFFFFF", 925, 743) and xp.matchColor("#FFFFFF", 953, 766) and xp.matchColor("#FFFFFF", 950, 742) and xp.matchColor("#FFFFFF", 923, 772) and xp.matchColor("#FFFFFF", 2029, 727) and xp.matchColor("#FFFFFF", 2010, 737) and xp.matchColor("#FFFFFF", 2034, 762) and xp.matchColor("#FFFFFF", 2007, 782):
                     break
-            tap_once_After_checking(play)
+                else:
+                    double_fast_tap(1145, 748)
+                    double_fast_tap(2199, 758)
+                    double_fast_tap(1145, 748)
+                    double_fast_tap(2199, 758)
+                    double_fast_tap(1145, 748)
+                    double_fast_tap(2199, 758)
+                    double_fast_tap(1145, 748)
+                    double_fast_tap(2199, 758)
+                    double_fast_tap(1145, 748)
+                    double_fast_tap(2199, 758)
+            double_fast_tap(1820, 1381)#play the game now
             time.sleep(3)
             press_until_SeeColor(board_idle)
             print("game started")
-        if xp.matchColor("#51473A", 1518, 690):#select bonus stregth
+        if xp.matchColor("#51473A", 2162, 932):#select bonus stregth
             print("select bonus stregth")
-            delay_tap(1509, 677)#next page
+            delay_tap(1926, 1171)#next page
             time.sleep(1)
-            delay_tap(1400, 529)#lv 4
+            double_fast_tap(1940, 919)#lv 4
             print("finished lv up")
-        elif xp.matchColor("#090908", 335, 967, 0.8) and xp.matchColor("#FFFFFF", 2034, 967, 0.95):
+        elif xp.matchColor("#FFFFFF", 2500, 1584,0.9) and xp.matchColor("#E0DCD7", 694, 1576,0.95):
             #Battle
             if battle_count == 0:
                 print("1st")
@@ -87,7 +69,7 @@ def dragon_board():
                 print("finished 1st battle" + str(battle_count))
             elif battle_count == 1:
                 print("2nd")
-                battle2()
+                battle1()
                 battle_count += 1
                 time.sleep(10)
                 print("finished 2nd battle" + str(battle_count))
@@ -101,11 +83,11 @@ def dragon_board():
                 battle4()
                 battle_count = 0
                 time.sleep(10)
-        elif xp.matchColor("#5A709F", 551, 650) and xp.matchColor("#AA5F50", 550, 490) and xp.matchColor("#AB8D49", 551, 331):
+        elif xp.matchColor("#F0EBE8", 1470, 300) and xp.matchColor("#F0EBE8", 1760, 297) and xp.matchColor("#F0EBE8", 1178, 293) and xp.matchColor("#F0EBE8", 1302, 302):
             #collect reward
             print("collect reward")
-            double_fast_tap(1157, 940)
-        elif xp.matchColor("#CFC3B2", 1528, 443) or xp.matchColor("#D0C4B4", 1898, 199) or xp.matchColor("#D0C4B4", 1454, 181):
+            double_fast_tap(1500, 1520)
+        elif xp.matchColor("#D0C4B4", 1614, 725) or xp.matchColor("#D0C4B4", 816, 306) or xp.matchColor("#D0C4B4", 2188, 462) or xp.matchColor("#D0C4B4", 1552, 784) or xp.matchColor("#D0C4B4", 1552, 784):
             if cut_scen == 0:#final boss cut scen
                 print("#final boss cut scen")
                 press_until_SeeColor(Battle_Screen)
@@ -116,22 +98,26 @@ def dragon_board():
                 press_until_SeeColor(after_final_boss)
                 print("ok, finshed holding")
                 cut_scen = 0
-        elif xp.matchColor("#AB8D49", 743, 387) and xp.matchColor("#AA5F50", 738, 462) and xp.matchColor("#5A709F", 745, 535):
+        elif xp.matchColor("#F0EBE8", 1120, 431) and xp.matchColor("#F0EBE8", 1542, 432) and xp.matchColor("#F0EBE8", 1828, 430):
             #final reward gained
             print("gained final reward")
-            double_fast_tap(1142, 827)
+            double_fast_tap(1464, 1349)
         # elif xp.matchColor("#FFF6DD", 1212, 564) and xp.matchColor("#FFEFB6", 863, 840):
         #     print("turning left")
         #     delay_tap(1022, 407)  # turn left
         #     time.sleep(2)
         else:
             time.sleep(0.3)
-            xp.tap(1136, 326)#turn up
+            xp.tap(1475, 1079)#go down
             time.sleep(0.3)
-            xp.tap(1782, 860)  # dice
+            xp.tap(2799, 1399)  # dice
+            # 2267, 1477
+            # 2212, 1575
+            #
+            # 2784, 1661
+            # 2843, 1574
             time.sleep(0.3)
-            xp.tap(1007, 432)  # turn left
-            time.sleep(0.3)
+            xp.tap(1261, 779)  # turn left
 
 
 

@@ -4,17 +4,27 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:padding="30dp">
-
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Weapon_soul Enchantment Script"/>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal" >
+            <CheckBox
+                    android:id="@+id/Rare"
+                    android:text="Rare Only?"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <RadioGroup
                 android:id="@+id/Keep_Which"
