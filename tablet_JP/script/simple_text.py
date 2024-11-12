@@ -10,14 +10,14 @@ def auto_story():
     launch_game()
     print("started")
     while True:
-        if xp.matchColor("#F7F8F8", 1962, 1411) and xp.matchColor("#FDFEFE", 1848, 1408) and xp.matchColor("#FBFBFC", 1762, 1402):
+        if xp.findColor("#D0C4B4", "79|27|#D0C4B4, 116|90|#D0C4B4", 70, 133, 2920, 1727):
+            double_fast_tap(1208, 423)
+        elif xp.matchColor("#F7F8F8", 1962, 1411) and xp.matchColor("#FDFEFE", 1848, 1408) and xp.matchColor("#FBFBFC", 1762, 1402):
             double_fast_tap(1796, 1425)
             print("accept mission")
             time.sleep(0.5)
             double_fast_tap(1132, 1256)
             time.sleep(0.5)
-            xp.tap(1109, 1245,5)
-            time.sleep(4)
         elif xp.matchColor("#51473A", 2131, 1032) :
             print("choose text box")
             double_fast_tap(2131, 1032)
@@ -37,10 +37,6 @@ def auto_story():
             print("accept reward")
             double_fast_tap(1493, 1395)
             double_fast_tap(567, 726)
-        elif xp.matchColor("#000000", 1132, 584) and xp.matchColor("#000000", 1909, 205):
-            print("black screen")
-            xp.tap(1109, 1245, 5)
-            time.sleep(3.5)
         elif xp.matchColor("#F0ECE7", 2430, 587) and xp.matchColor("#FFAB1C", 2545, 528) and xp.matchColor("#FFFFFF", 2476, 1549):
             print("battle")
             delay_tap(1996, 1578)
@@ -50,6 +46,6 @@ def auto_story():
             double_fast_tap(1058, 949)
             double_fast_tap(1058, 949)
             double_fast_tap(1058, 949)
-            time.sleep(3)
-        time.sleep(0.8)
+            time.sleep(1.5)
+        time.sleep(0.3)
 auto_story()

@@ -6,7 +6,7 @@ Map_Proceed = ["#1E5167", 2561, 1550] #["#23586F", 2549, 1557]
 Map_Ok = ["#22576E", 2022, 1213]
 Comfirm_To_Rest = ["#326378", 1944, 1219]
 World_Map = ["#DADAD7", 1991, 1468]
-Menu = ["#EFEFEE", 2460, 1472]
+Menu = ["#F5F5F5", 164, 1419]
 Battle_Screen = ["#6D6D6D", 2870, 1597]
 atk = ["#FFFFFF", 2572, 1584]
 game_loc = ["#000000", 1561, 1735]
@@ -110,7 +110,7 @@ def tap_Until_Exsit(val, tap_where,limit = 100):
     x2, y2 = tap_where
     count = 0
     while True:
-        if not xp.matchColor(color, x, y,0.9) and count < limit:
+        if not xp.matchColor(color, x, y,0.95) and count < limit:
             xp.tap(x2, y2)  # where I should tap
             time.sleep(0.4)
             count += 1
@@ -367,10 +367,18 @@ def divine_beast():
     delay_tap(1457, 602)
 
 
-def launch_game():
+def launch_game(va = 0):
     xp.launchApp("com.square_enix.android_googleplay.octopathj", "com.epicgames.ue4.SplashActivity")
+    if va == 1:
+        time.sleep(4)
+        tap = 0
+        while True:
+            if tap < 5:
+                double_tap(1447, 930)
+                tap += 1
+            else:
+                break
     time.sleep(1)
-
 def zoom_map():
     tap_once_After_checking(zoom_icon, -1)
 
